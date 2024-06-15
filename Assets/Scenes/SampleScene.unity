@@ -381,7 +381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &513564087
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -618,15 +618,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400100, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.3857348
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400100, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9990308
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400100, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.96603
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400100, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -660,6 +660,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b71a5387341a70640ba0feba7471bdfc, type: 2}
     - target: {fileID: 13600000, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1049,7 +1053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed261dfc7de0c5249b080df5afeb8dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 513564086}
+  Player: {fileID: 539860421}
 --- !u!1 &964672664
 GameObject:
   m_ObjectHideFlags: 0
