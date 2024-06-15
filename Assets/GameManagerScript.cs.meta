@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ad2500d64c7cec64c8c6f18e09a392b3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - block: {instanceID: 0}
+  - Goal: {instanceID: 0}
+  - coin: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
