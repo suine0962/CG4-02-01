@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 87d6d7199f8f1b344af000821116e092
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - BombParticle: {fileID: 2337532105927928341, guid: 38a3684b5dfe4be4d8ac0dee5dad56ff, type: 3}
+  - con: {instanceID: 0}
+  - anim: {instanceID: 0}
+  - rb: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -3,16 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
     int[,] map;
+    int[,] map2;
     public GameObject block;
     public GameObject Goal;
     public GameObject coin;
+    
     public TextMeshProUGUI scoreText;
+    public GameObject GoalParticle;
     public static int score= 0;
     //GameObject[,] field;
 
@@ -33,6 +37,20 @@ public class GameManager : MonoBehaviour
             {1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
             {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 },
             {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2, 1 },
+            { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1  },
+        };
+
+        map2 = new int[,]{
+            { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 },
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1,},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1, },
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1, },
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1, },
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1},
             { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1 ,1, 1, 1, 1, 1  },
         };
 
@@ -58,27 +76,47 @@ public class GameManager : MonoBehaviour
                 position.y = -y + 5;
                 if (map[y, x] == 1)
                 {
-                     Instantiate(block,
-                        position,
-                        Quaternion.identity);
+                    Instantiate(block,
+                       position,
+                       Quaternion.identity);
 
                 }
 
                 if (map[y, x] == 2)
                 {
                     Goal.transform.position = position;
+                    GoalParticle.transform.position = position;
+
                 }
 
 
                 if (map[y, x] == 3)
                 {
-                   Instantiate(coin, position, Quaternion.identity);
+                    Instantiate(coin, position, Quaternion.identity);
+                }
+
+
+                //position.z = 3;
+                //Instantiate(block, position, Quaternion.identity);
+
+            }
+        }
+        for (int y = 0; y < map2.GetLength(0); y++)
+        {
+            for (int x = 0; x < map2.GetLength(1); x++)
+            {
+                if (map2[y, x] == 1)
+                {
+                    position.x = x;
+                    position.y = -y + 5;
+                    position.z = 7;
+                    Instantiate(block, position, Quaternion.identity);
                 }
 
             }
         }
-    }
 
+    }
     // Update is called once per frame
     void Update()
     {

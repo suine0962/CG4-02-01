@@ -394,9 +394,9 @@ CharacterController:
   m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_SkinWidth: 0.0001
+  m_MinMoveDistance: 0
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!54 &736579417 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 5400000, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
@@ -881,6 +881,7 @@ MonoBehaviour:
   Goal: {fileID: 1878934179}
   coin: {fileID: 6712005767696396263, guid: 3e589b109601f9f4badde9281972b0d5, type: 3}
   scoreText: {fileID: 0}
+  GoalParticle: {fileID: 0}
 --- !u!82 &1838521376
 AudioSource:
   m_ObjectHideFlags: 0

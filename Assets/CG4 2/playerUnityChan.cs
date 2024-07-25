@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-
+    private AudioSource audioSource;
+    public GameObject BombParticle;
     public CharacterController con;
     public Animator anim;
     public Rigidbody rb;
@@ -14,8 +15,8 @@ public class PlayerScript : MonoBehaviour
     float sprintSpeed = 5f; // ダッシュ時の移動速度
     float jump = 10f;        // ジャンプ力
     float gravity = 10f;    // 重力の大きさ
-    bool jumpMotion = false;
-    bool jumpMotion2 = false;
+    //bool jumpMotion = false;
+    //bool jumpMotion2 = false;
 
     Vector3 moveDirection = Vector3.zero;
 
@@ -29,38 +30,53 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        if  (true)
-        {
+        
             float speed = Input.GetButton("Fire3") ? sprintSpeed : normalSpeed;
 
             Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
 
-            Vector3 moveX = Camera.main.transform.right * Input.GetAxis("Horizontal") * speed; 
+            Vector3 moveX = Camera.main.transform.right * Input.GetAxis("Horizontal") * speed;
 
-            if (con.isGrounded)
+        if (con.isGrounded)
+        {
+            moveDirection = moveX;
+            if (Input.GetButtonDown("Jump"))
             {
-                moveDirection = moveX;
-                if (Input.GetButtonDown("Jump"))
-                {
-                    moveDirection.y = jump;
-                }
+                moveDirection.y = jump;
             }
-            else
-            {
-               
-                moveDirection = moveX + new Vector3(0, moveDirection.y, 0);
-                moveDirection.y -= gravity * Time.deltaTime;
+        }
 
-            }
+        
 
-          
-            anim.SetFloat("MoveSpeed", (moveX).magnitude);
+        else
+        {
+
+            moveDirection = moveX + new Vector3(0, moveDirection.y, 0);
+            moveDirection.y -= gravity * Time.deltaTime;
+
+        }
+
+
+        anim.SetFloat("MoveSpeed", (moveX).magnitude);
 
             
             transform.LookAt(transform.position + moveX);
 
            
             con.Move(moveDirection * Time.deltaTime);
+    }
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.tag == "COIN")
+        {
+            other.gameObject.SetActive(false);
+            GameManager.score += 1;
+
+            Instantiate(BombParticle, transform.position, Quaternion.identity);
         }
     }
 }

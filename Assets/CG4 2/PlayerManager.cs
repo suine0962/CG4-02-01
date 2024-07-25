@@ -9,6 +9,7 @@ public class gameManager : MonoBehaviour
 
     private bool isBlock = true;
     private AudioSource audioSource;
+    public GameObject BombParticle;
     float movespeed = 5.0f;
     // Start is called before the first frame update
     void Start()
@@ -63,11 +64,14 @@ public class gameManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if(other.gameObject.tag=="COIN")
         {
             other.gameObject.SetActive(false);
             audioSource.Play();
             GameManager.score += 1;
+
+            Instantiate(BombParticle, transform.position, Quaternion.identity);
         }
     }
-}
+}                  
